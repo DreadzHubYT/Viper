@@ -129,14 +129,6 @@
 </head>
 <body>
     <div id="particles-js"></div>
-    
-    <!-- Navigation bar -->
-    <div class="nav">
-        <a href="index.html">Home</a>
-        <a href="lol.html">Games</a>
-        <a href="apps.html">Apps</a>
-    </div>
-
     <div class="main">
         <h1>Viper</h1>
         <div class="phrase" id="random-phrase"></div>
@@ -153,14 +145,26 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="search.js"></script> <!-- Include the new search.js file -->
-    <script async src="https://arc.io/widget.min.js#L1SfLEWE"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VHVNHMYGN3"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-VHVNHMYGN3');
+        // JavaScript for search functionality
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('uv-form');
+            const input = document.getElementById('uv-address');
+            const searchEngine = document.getElementById('uv-search-engine');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                
+                const query = input.value.trim();
+                if (query) {
+                    const searchUrl = searchEngine.value.replace('%s', encodeURIComponent(query));
+                    console.log(`Redirecting to: ${searchUrl}`); // Log the search URL for debugging
+                    window.location.href = searchUrl; // Redirect to the search URL
+                } else {
+                    alert("Please enter a search query."); // Alert if input is empty
+                }
+            });
+        });
 
         // Array of phrases
         const phrases = [
@@ -250,6 +254,14 @@
             retina_detect: true
         });
     </script>
+    <script async src="https://arc.io/widget.min.js#L1SfLEWE"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VHVNHMYGN3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-VHVNHMYGN3');
+    </script>
     <script src="uv/uv.bundle.js" defer></script>
     <script src="uv/uv.config.js" defer></script>
     <script src="register-sw.js" defer></script>
@@ -257,5 +269,3 @@
     <script src="error.js" defer></script>
 </body>
 </html>
-
-
